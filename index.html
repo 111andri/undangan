@@ -529,8 +529,8 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(139,69,19,0.1)"/></svg>')
-                    repeat;
+                background-image: url(couple.jpg);
+
                 animation: sparkleEnhanced 20s linear infinite;
             }
 
@@ -608,10 +608,10 @@
 
             /* Groom Photo */
             .groom .couple-photo::after {
-                content: "👤";
+                content: url("laki.jpeg");
                 position: absolute;
                 font-size: 5rem;
-                top: 50%;
+                top: 40%;
                 left: 50%;
                 transform: translate(-50%, -50%);
                 background: linear-gradient(135deg, #8b4513, #a0522d);
@@ -622,10 +622,10 @@
 
             /* Bride Photo */
             .bride .couple-photo::after {
-                content: "👩‍🦰";
+                content: url(cewek.jpeg);
                 position: absolute;
                 font-size: 5rem;
-                top: 50%;
+                top: 62%;
                 left: 50%;
                 transform: translate(-50%, -50%);
                 filter: sepia(0.3) hue-rotate(20deg) saturate(1.2);
@@ -1657,10 +1657,7 @@
         <!-- Enhanced Audio Player -->
         <div class="audio-player" id="audioPlayer">
             <audio id="backgroundAudio" loop>
-                <source
-                    src="https://cdnjs.cloudflare.com/ajax/libs/tone.js/14.8.49/Tone.min.js"
-                    type="audio/mpeg"
-                />
+                <source src="wedding.mp3?v=2" type="audio/mp3" />
                 <!-- Placeholder - you would replace with actual wedding music URL -->
             </audio>
             <div class="audio-controls">
@@ -2008,18 +2005,14 @@
 
             // Audio control functions
             function toggleAudio() {
-                if (!audioContext) {
-                    initAudio();
-                }
+                const audio = document.getElementById("backgroundAudio");
 
-                if (audioPlaying) {
-                    stopWeddingMusic();
-                    playIcon.className = "fas fa-play";
-                    audioPlaying = false;
-                } else {
-                    playWeddingMusic();
+                if (audio.paused) {
+                    audio.play();
                     playIcon.className = "fas fa-pause";
-                    audioPlaying = true;
+                } else {
+                    audio.pause();
+                    playIcon.className = "fas fa-play";
                 }
             }
 
