@@ -1812,8 +1812,9 @@
                                 </label>
                                 <input
                                     type="text"
-                                    id="name"
-                                    name="name"
+                                    id="nama
+                                    name="
+                                    nama
                                     required
                                     placeholder="Masukkan nama lengkap Anda"
                                 />
@@ -1824,11 +1825,7 @@
                                     <i class="fas fa-check-circle"></i>
                                     Kehadiran *
                                 </label>
-                                <select
-                                    id="attendance"
-                                    name="attendance"
-                                    required
-                                >
+                                <select id="pesan" name="pesan" required>
                                     <option value="">Pilih kehadiran...</option>
                                     <option value="hadir">✅ Hadir</option>
                                     <option value="tidak-hadir">
@@ -1903,6 +1900,44 @@
         </footer>
 
         <script>
+            const URL_API =
+                "https://script.google.com/macros/s/AKfycbwMhK6fKQD3qKtB9wjlqhECC37IWrMdktNpq90iz_ovZjbcPAJ-Wh0MuDIHhSyPFYTFYA/exec";
+
+            // Tampilkan doa
+            function loadDoa() {
+                fetch(URL_API)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        const list = document.getElementById("list-doa");
+                        list.innerHTML = "";
+                        data.forEach((item) => {
+                            const li = document.createElement("li");
+                            li.innerHTML = `<strong>${item.nama}</strong>: ${item.pesan}`;
+                            list.appendChild(li);
+                        });
+                    });
+            }
+
+            // Kirim doa
+            document
+                .getElementById("form-doa")
+                .addEventListener("submit", function (e) {
+                    e.preventDefault();
+                    const nama = document.getElementById("nama").value;
+                    const pesan = document.getElementById("pesan").value;
+                    fetch(URL_API, {
+                        method: "POST",
+                        body: JSON.stringify({ nama, pesan }),
+                        headers: { "Content-Type": "application/json" },
+                    }).then(() => {
+                        document.getElementById("form-doa").reset();
+                        loadDoa();
+                    });
+                });
+
+            // Load saat halaman dibuka
+            loadDoa();
+
             // Store messages in memory
             let messages = [];
             let isInvitationOpen = false;
