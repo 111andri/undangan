@@ -414,6 +414,25 @@
                 transform: scale(1.1);
             }
 
+            @media (max-width: 600px) {
+                h1,
+                h2,
+                h3 {
+                    font-size: 1.5rem;
+                    text-align: center;
+                }
+
+                .container {
+                    padding: 0 15px;
+                }
+
+                .footer-verse,
+                .footer-translation {
+                    font-size: 1rem;
+                    text-align: center;
+                }
+            }
+
             /* Desktop Navigation */
             @media (min-width: 769px) {
                 .nav {
@@ -1903,7 +1922,6 @@
         </footer>
 
         <script>
-            
             // Store messages in memory
             let messages = [];
             let isInvitationOpen = false;
